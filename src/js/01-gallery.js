@@ -2,7 +2,18 @@ import { galleryItems } from './gallery-items.js';
 
 // Change code below this line
 
-const instance = basicLightbox.create('', {});
+const instance = basicLightbox.create('', {
+  onShow: () => {
+    document.onkeydown = event => {
+      if (event.key === 'Escape') {
+        instance.close();
+      }
+    };
+  },
+  onClose: () => {
+    document.onkeydown = undefined;
+  }
+});
 
 const modalElement = instance.element();
 
